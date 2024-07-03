@@ -1,0 +1,46 @@
+﻿-- Tạo bảng Student
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INT,
+    Address VARCHAR(255)
+);
+
+-- Tạo bảng Class
+CREATE TABLE Class (
+    ClassID INT PRIMARY KEY,
+    Subject VARCHAR(100),
+    TeacherID INT
+);
+
+-- Tạo bảng Student_Class
+CREATE TABLE Student_Class (
+    ClassID INT,
+    StudentID INT,
+    PRIMARY KEY (ClassID, StudentID),
+    FOREIGN KEY (ClassID) REFERENCES Class(ClassID),
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
+);
+
+-- Chèn dữ liệu vào bảng Student
+INSERT INTO Student (StudentID, Name, Age, Address) VALUES 
+(1, 'Nguyen Van A', 20, '123 Le Loi, Hanoi'),
+(2, 'Tran Thi B', 21, '456 Hai Ba Trung, Hanoi'),
+(3, 'Le Van C', 22, '789 Tran Hung Dao, Hanoi');
+
+-- Chèn dữ liệu vào bảng Class
+INSERT INTO Class (ClassID, Subject, TeacherID) VALUES 
+(101, 'Math', 1),
+(102, 'Physics', 2),
+(103, 'Chemistry', 3);
+
+-- Chèn dữ liệu vào bảng Student_Class
+INSERT INTO Student_Class (ClassID, StudentID) VALUES 
+(101, 1),
+(101, 2),
+(102, 2),
+(103, 3);
+
+-- Lấy thông tin chi tiết của một sinh viên
+SELECT * FROM Student
+WHERE StudentID = 1;
